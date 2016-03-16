@@ -1,2 +1,5 @@
 http://stackoverflow.com/questions/34519/what-is-a-semaphore
 http://stackoverflow.com/questions/7240825/c-sharp-forms-callback
+
+https://my.dundee.ac.uk/bbcswebdav/pid-4524668-dt-content-rid-3018901_2/courses/AC22005_SEM0000_1516/AC22005-CW3-Coursework-2016.pdf
+https://my.dundee.ac.uk/bbcswebdav/pid-4524668-dt-content-rid-3018903_2/courses/AC22005_SEM0000_1516/22005-CW3-checklist2016.pdf
