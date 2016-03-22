@@ -42,6 +42,7 @@
             this.btnInstance.TabIndex = 0;
             this.btnInstance.Text = "Open new ATM instance";
             this.btnInstance.UseVisualStyleBackColor = true;
+            this.btnInstance.Click += new System.EventHandler(this.btnInstance_Click);
             // 
             // btnClose
             // 

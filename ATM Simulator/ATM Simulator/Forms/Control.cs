@@ -16,5 +16,10 @@ namespace ATM_Simulator.Forms
         {
             InitializeComponent();
         }
+
+        private void btnInstance_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

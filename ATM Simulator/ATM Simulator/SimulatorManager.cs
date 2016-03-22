@@ -23,13 +23,18 @@ namespace ATM_Simulator
             this.Control.MdiParent = this.Master;
             this.Control.Show();
 
+
+            this.Control.btnInstance.Click += btnInstance_Click;
+            this.Control.btnNewAccount.Click += btnNewAccount_Click;
+
+            Application.Run(this.Master);
+        }
+
+        void btnNewAccount_Click(object sender, EventArgs e)
+        {
             Forms.AccountManagement am = new Forms.AccountManagement();
             am.MdiParent = this.Master;
             am.Show();
-
-            this.Control.btnInstance.Click += btnInstance_Click;
-
-            Application.Run(this.Master);
         }
 
         void btnInstance_Click(object sender, EventArgs e)
