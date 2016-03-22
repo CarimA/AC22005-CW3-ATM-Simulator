@@ -10,11 +10,12 @@ namespace ATM_Simulator
     {
         public string ID;
         public string Pin;
+        private decimal _Balance;
         public decimal Balance
         {
-            get { return Balance; }
+            get { return _Balance; }
             set {
-                Balance = decimal.Round(value, 2);
+                _Balance = decimal.Round(value, 2);
             }
         }
 

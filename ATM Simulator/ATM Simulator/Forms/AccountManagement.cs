@@ -20,18 +20,6 @@ namespace ATM_Simulator.Forms
             InitializeComponent();
         }
 
-        class Account
-        {
-            private int AccNum;
-            private int PIN;
-
-            public Account (int AccNum, int PIN)
-            {
-                this.AccNum = AccNum;
-                this.PIN = PIN;
-            }
-        }
-
         private void AccountManagement_Load(object sender, EventArgs e)
         {
 
@@ -54,6 +42,11 @@ namespace ATM_Simulator.Forms
             //check if 4 digits
             //try again if not
             //assign 4 digits to account no.
+        }
+
+        private void OKBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

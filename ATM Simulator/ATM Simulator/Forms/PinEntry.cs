@@ -26,5 +26,10 @@ namespace ATM_Simulator.Forms
         {
 
         }
+
+        private void btnOne_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

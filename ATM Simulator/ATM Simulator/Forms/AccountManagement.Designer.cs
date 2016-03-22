@@ -47,7 +47,7 @@
             // 
             // PinBox
             // 
-            this.PinBox.Location = new System.Drawing.Point(150, 162);
+            this.PinBox.Location = new System.Drawing.Point(150, 141);
             this.PinBox.Name = "PinBox";
             this.PinBox.Size = new System.Drawing.Size(173, 20);
             this.PinBox.TabIndex = 2;
@@ -67,7 +67,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(13, 165);
+            this.label2.Location = new System.Drawing.Point(13, 145);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 16);
             this.label2.TabIndex = 4;
@@ -86,17 +86,18 @@
             // OKBtn
             // 
             this.OKBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OKBtn.Location = new System.Drawing.Point(150, 257);
+            this.OKBtn.Location = new System.Drawing.Point(150, 236);
             this.OKBtn.Name = "OKBtn";
             this.OKBtn.Size = new System.Drawing.Size(72, 44);
             this.OKBtn.TabIndex = 6;
             this.OKBtn.Text = "OK";
             this.OKBtn.UseVisualStyleBackColor = true;
+            this.OKBtn.Click += new System.EventHandler(this.OKBtn_Click);
             // 
             // CancelBtn
             // 
             this.CancelBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CancelBtn.Location = new System.Drawing.Point(251, 257);
+            this.CancelBtn.Location = new System.Drawing.Point(251, 236);
             this.CancelBtn.Name = "CancelBtn";
             this.CancelBtn.Size = new System.Drawing.Size(72, 44);
             this.CancelBtn.TabIndex = 7;
@@ -125,12 +126,12 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox AccNoBox;
-        private System.Windows.Forms.TextBox PinBox;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button OKBtn;
-        private System.Windows.Forms.Button CancelBtn;
+        public System.Windows.Forms.TextBox AccNoBox;
+        public System.Windows.Forms.TextBox PinBox;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label label2;
+        public System.Windows.Forms.Label label3;
+        public System.Windows.Forms.Button OKBtn;
+        public System.Windows.Forms.Button CancelBtn;
     }
 }
