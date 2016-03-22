@@ -20,6 +20,18 @@ namespace ATM_Simulator.Forms
             InitializeComponent();
         }
 
+        class Account
+        {
+            private int AccNum;
+            private int PIN;
+
+            public Account (int AccNum, int PIN)
+            {
+                this.AccNum = AccNum;
+                this.PIN = PIN;
+            }
+        }
+
         private void AccountManagement_Load(object sender, EventArgs e)
         {
 
@@ -27,7 +39,7 @@ namespace ATM_Simulator.Forms
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            //Console.WriteLine("Please enter your new account number.");
+
             //check if account exists 
             //create new account if not
             //save detail

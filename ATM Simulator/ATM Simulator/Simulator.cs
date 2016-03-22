@@ -9,11 +9,14 @@ namespace ATM_Simulator
 {
     public class Simulator
     {
+        public string InstanceName { get; private set; }
         public Forms.Screen Screen { get; private set; }
         public Forms.PinEntry PinEntry { get; private set; }
 
         public Simulator(Forms.Master master, string instanceName)
         {
+            this.InstanceName = instanceName;
+
             this.Screen = new Forms.Screen();
             this.Screen.MdiParent = master;
             this.Screen.StartPosition = FormStartPosition.CenterScreen;
