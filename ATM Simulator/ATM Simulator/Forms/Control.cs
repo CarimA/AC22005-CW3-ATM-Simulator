@@ -21,5 +21,15 @@ namespace ATM_Simulator.Forms
         {
 
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            DialogResult result;
+            result = MessageBox.Show("Are you sure you want to quit", "Quit", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
     }
 }

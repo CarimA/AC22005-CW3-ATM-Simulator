@@ -48,5 +48,15 @@ namespace ATM_Simulator.Forms
         {
 
         }
+
+        private void CancelBtn_Click(object sender, EventArgs e)
+        {
+            DialogResult result;
+            result = MessageBox.Show("Are you sure you want to cancel", "Quit", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (result == DialogResult.Yes)
+            {
+                Close();
+            }
+        }
     }
 }
