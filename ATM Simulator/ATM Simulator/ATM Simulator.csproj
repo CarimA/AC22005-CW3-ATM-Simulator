@@ -44,16 +44,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Compile Include="Forms\AccountManagement.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\AccountManagement.Designer.cs">
       <DependentUpon>AccountManagement.cs</DependentUpon>
     </Compile>
-=======
     <Compile Include="Account.cs" />
->>>>>>> origin/master
     <Compile Include="Forms\Control.cs">
       <SubType>Form</SubType>
     </Compile>
