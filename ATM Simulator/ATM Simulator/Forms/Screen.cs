@@ -16,5 +16,10 @@ namespace ATM_Simulator.Forms
         {
             InitializeComponent();
         }
+
+        private void Screen_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

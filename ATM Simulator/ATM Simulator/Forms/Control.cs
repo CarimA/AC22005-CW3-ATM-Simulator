@@ -16,10 +16,5 @@ namespace ATM_Simulator.Forms
         {
             InitializeComponent();
         }
-
-        private void Control_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

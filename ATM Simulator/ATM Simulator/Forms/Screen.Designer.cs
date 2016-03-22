@@ -1,6 +1,6 @@
 ﻿namespace ATM_Simulator.Forms
 {
-    partial class Screen
+    public partial class Screen
     {
         /// <summary>
         /// Required designer variable.
@@ -37,6 +37,8 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
+            this.lblDisplay = new System.Windows.Forms.Label();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button12
@@ -78,6 +80,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.panel1.Controls.Add(this.lblDisplay);
             this.panel1.Location = new System.Drawing.Point(79, 13);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(343, 257);
@@ -119,6 +122,15 @@
             this.button7.TabIndex = 17;
             this.button7.UseVisualStyleBackColor = true;
             // 
+            // lblDisplay
+            // 
+            this.lblDisplay.Font = new System.Drawing.Font("Courier New", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDisplay.Location = new System.Drawing.Point(14, 10);
+            this.lblDisplay.Name = "lblDisplay";
+            this.lblDisplay.Size = new System.Drawing.Size(316, 235);
+            this.lblDisplay.TabIndex = 0;
+            this.lblDisplay.Text = "label1";
+            // 
             // Screen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -137,6 +149,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Screen";
             this.Text = "ATM";
+            this.Load += new System.EventHandler(this.Screen_Load);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -152,5 +166,6 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
+        public System.Windows.Forms.Label lblDisplay;
     }
 }

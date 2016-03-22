@@ -38,7 +38,6 @@
             this.IsMdiContainer = true;
             this.Name = "Master";
             this.Text = "ATM Simulator";
-            this.Load += new System.EventHandler(this.Master_Load);
             this.ResumeLayout(false);
 
         }
