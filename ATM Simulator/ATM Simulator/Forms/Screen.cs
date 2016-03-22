@@ -21,5 +21,10 @@ namespace ATM_Simulator.Forms
         {
 
         }
+
+        private void lblDisplay_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

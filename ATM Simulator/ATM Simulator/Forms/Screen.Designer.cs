@@ -33,11 +33,11 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblDisplay = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
-            this.lblDisplay = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,6 +86,16 @@
             this.panel1.Size = new System.Drawing.Size(343, 257);
             this.panel1.TabIndex = 16;
             // 
+            // lblDisplay
+            // 
+            this.lblDisplay.Font = new System.Drawing.Font("Courier New", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDisplay.Location = new System.Drawing.Point(14, 10);
+            this.lblDisplay.Name = "lblDisplay";
+            this.lblDisplay.Size = new System.Drawing.Size(316, 235);
+            this.lblDisplay.TabIndex = 0;
+            this.lblDisplay.Text = "label1";
+            this.lblDisplay.Click += new System.EventHandler(this.lblDisplay_Click);
+            // 
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -121,15 +131,6 @@
             this.button7.Size = new System.Drawing.Size(60, 60);
             this.button7.TabIndex = 17;
             this.button7.UseVisualStyleBackColor = true;
-            // 
-            // lblDisplay
-            // 
-            this.lblDisplay.Font = new System.Drawing.Font("Courier New", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDisplay.Location = new System.Drawing.Point(14, 10);
-            this.lblDisplay.Name = "lblDisplay";
-            this.lblDisplay.Size = new System.Drawing.Size(316, 235);
-            this.lblDisplay.TabIndex = 0;
-            this.lblDisplay.Text = "label1";
             // 
             // Screen
             // 

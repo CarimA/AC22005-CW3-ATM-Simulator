@@ -21,5 +21,10 @@ namespace ATM_Simulator.Forms
         {
 
         }
+
+        private void btnThree_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
