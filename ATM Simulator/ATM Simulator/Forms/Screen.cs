@@ -12,22 +12,14 @@ namespace ATM_Simulator.Forms
 {
     public partial class Screen : Form
     {
-        public SimulatorManager Manager;
-
-        public Screen(SimulatorManager manager)
+        public Screen()
         {
             InitializeComponent();
-            this.Manager = manager;
         }
 
-        private void Screen_Load(object sender, EventArgs e)
+        public void SetText(string Text)
         {
-
-        }
-
-        private void lblDisplay_Click(object sender, EventArgs e)
-        {
-
+            this.lblDisplay.Text = Text;
         }
     }
 }

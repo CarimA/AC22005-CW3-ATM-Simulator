@@ -71,5 +71,12 @@ namespace ATM_Simulator.Forms
             this.AccNoBox.Text = string.Empty;
             this.PinBox.Text = string.Empty;
         }
+
+        private void CancelBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            this.AccNoBox.Text = string.Empty;
+            this.PinBox.Text = string.Empty;
+        }
     }
 }

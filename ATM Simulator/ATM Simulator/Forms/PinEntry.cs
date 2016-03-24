@@ -12,12 +12,9 @@ namespace ATM_Simulator.Forms
 {
     public partial class PinEntry : Form
     {
-        public SimulatorManager Manager;
-
-        public PinEntry(SimulatorManager manager)
+        public PinEntry()
         {
             InitializeComponent();
-            this.Manager = manager;
         }
 
         private void PinEntry_Load(object sender, EventArgs e)
@@ -25,19 +22,9 @@ namespace ATM_Simulator.Forms
 
         }
 
-        private void btnThree_Click(object sender, EventArgs e)
+        public void ToggleButton(Button button, bool state)
         {
-
-        }
-
-        private void btnOne_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnFive_Click(object sender, EventArgs e)
-        {
-
+            button.Enabled = state;
         }
     }
 }

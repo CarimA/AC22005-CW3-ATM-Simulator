@@ -28,7 +28,10 @@ namespace ATM_Simulator
 
         public void Deposit(decimal amount)
         {
-            this.Balance += amount;
+            lock (this)
+            {
+                this.Balance += amount;
+            }
         }
 
         public bool Withdraw(decimal amount)

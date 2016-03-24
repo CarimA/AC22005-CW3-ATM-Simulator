@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -9,27 +11,37 @@ namespace ATM_Simulator
 {
     public class Simulator
     {
-        public SimulatorManager Manager { get { return Master.Manager; } }
-        public Forms.Master Master;
+        public SimulatorManager Manager { get; set; }
+
+        public BackgroundWorker DepositWorker { get; set; }
+        public BackgroundWorker WithdrawWorker { get; set; }
+
+        public AtmState State { get; set; }
 
         public string InstanceName { get; private set; }
         public Forms.Screen Screen { get; private set; }
         public Forms.PinEntry PinEntry { get; private set; }
 
-        public Simulator(Forms.Master master, string instanceName)
+        public string KeyedInput { get; set; }
+
+        private string Account { get; set; }
+        //private int PinAttempts { get; set; }
+
+        public Simulator(SimulatorManager manager, string instanceName)
         {
-            this.Master = master;
+            //this.Master = master;
             this.InstanceName = instanceName;
-
-            this.Screen = new Forms.Screen(master.Manager);
-            this.Screen.MdiParent = master;
+            this.Manager = manager;
+            
+            this.Screen = new Forms.Screen();
+            //this.Screen.MdiParent = master;
             this.Screen.StartPosition = FormStartPosition.CenterScreen;
-            this.Screen.Text = string.Format(this.Screen.Text + " [{0}]", instanceName);
+            this.Screen.Text = string.Format(this.Screen.Text + " [{0}]", this.InstanceName);
             this.Screen.Location = new System.Drawing.Point(this.Screen.Location.X, this.Screen.Location.Y - this.Screen.Height / 2 + 10);
-            this.Screen.Size = new System.Drawing.Size(517, 320);
+            this.Screen.Size = new System.Drawing.Size(388, 320);
 
-            this.PinEntry = new Forms.PinEntry(master.Manager);
-            this.PinEntry.MdiParent = master;
+            this.PinEntry = new Forms.PinEntry();
+            //this.PinEntry.MdiParent = master;
             this.PinEntry.StartPosition = FormStartPosition.CenterScreen;
             this.PinEntry.Text = string.Format(this.PinEntry.Text);
             this.PinEntry.Location = new System.Drawing.Point(this.PinEntry.Location.X, this.PinEntry.Location.Y + this.PinEntry.Height / 2 + 10);
@@ -51,12 +63,28 @@ namespace ATM_Simulator
             this.PinEntry.btnCancel.Click += btnCancel_Click;
             this.PinEntry.btnClear.Click += btnClear_Click;
             this.PinEntry.btnEnter.Click += btnEnter_Click;
+
+            DepositWorker = new BackgroundWorker();
+            DepositWorker.DoWork += DepositWorker_DoWork;
+
+            WithdrawWorker = new BackgroundWorker();
+            WithdrawWorker.DoWork += WithdrawWorker_DoWork;
         }
 
         public void Run()
         {
+            this.State = AtmState.EnterAccount;
+
+            this.DisplayMenu();
+
             InvokeShowScreen();
             InvokeShowPinEntry();
+        }
+
+        public void Stop()
+        {
+            this.Screen.Close();
+            this.PinEntry.Close();
         }
 
         delegate void ShowScreenCallback();
@@ -94,21 +122,175 @@ namespace ATM_Simulator
             this.PinEntry.Show();
         }
 
+        delegate void SetScreenTextCallback(string Text);
+        public void SetScreenText(string Text)
+        {
+            if (this.Screen.InvokeRequired)
+            {
+                SetScreenTextCallback c = new SetScreenTextCallback(this.Screen.SetText);
+                this.Screen.Invoke(c, new object[] { Text });
+            }
+            else
+                this.Screen.SetText(Text);
+        }
+
         private void btnEnter_Click(object sender, EventArgs e)
+        {
+            // I don't like this.
+            switch (this.State)
+            {
+                case AtmState.EnterAccount:
+                    if (this.Manager.AccountExists(this.KeyedInput))
+                    {
+                        this.Account = KeyedInput;
+                        this.State = AtmState.EnterPin;
+                    }
+                    Clear();
+                    break;
+
+                case AtmState.EnterPin:
+                    if (this.Manager.CheckPin(this.Account, this.KeyedInput))
+                    {
+                        this.State = AtmState.AtmMenu;
+                    }
+                    Clear();
+                    break;
+
+                case AtmState.AtmMenu:
+                    switch (this.KeyedInput)
+                    {
+                        case "1": // Deposit
+                            this.State = AtmState.Deposit;
+                            break;
+
+                        case "2": // Withdraw
+
+                            break;
+
+                        case "3":
+                            this.State = AtmState.Balance;
+                            break;
+
+                        case "4":
+                            this.Stop();
+                            break;
+                    }
+                    Clear();
+                    break;
+                    
+
+                case AtmState.Deposit:
+                    DepositWorker.RunWorkerAsync();
+                    break;
+
+                case AtmState.Balance:
+                case AtmState.DepositSuccess:
+                case AtmState.WithdrawFail:
+                case AtmState.WithdrawSuccess:
+                    this.State = AtmState.AtmMenu;
+                    Clear();
+                    break;
+            }
+        }
+
+
+        void DepositWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            this.DisableButtons();
+
+            decimal amount = 0;
+            decimal.TryParse(this.KeyedInput, out amount);
+            System.Threading.Thread.Sleep(new Random().Next(6, 10) * 1000);
+            this.Manager.Deposit(this.Account, amount);
+            this.State = AtmState.DepositSuccess;
+            Clear();
+
+            this.EnableButtons();
+        }
+
+        void WithdrawWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             throw new NotImplementedException();
         }
 
+        private void EnableButtons()
+        {
+            ToggleButtons(true);
+        }
+
+        public void DisableButtons()
+        {
+            ToggleButtons(false);
+        }
+
+        delegate void DisableButtonCallback(Button button, bool state);
+        public void ToggleButtons(bool state)
+        {
+            if (this.PinEntry.InvokeRequired)
+            {
+                DisableButtonCallback a = new DisableButtonCallback(this.PinEntry.ToggleButton);
+                this.PinEntry.Invoke(a, new object[] { this.PinEntry.btnClear, state });
+                DisableButtonCallback b = new DisableButtonCallback(this.PinEntry.ToggleButton);
+                this.PinEntry.Invoke(b, new object[] { this.PinEntry.btnEnter, state });
+                DisableButtonCallback c = new DisableButtonCallback(this.PinEntry.ToggleButton);
+                this.PinEntry.Invoke(c, new object[] { this.PinEntry.btnCancel, state });
+            }
+            else
+            {
+                this.PinEntry.btnClear.Enabled = state;
+                this.PinEntry.btnEnter.Enabled = state;
+                this.PinEntry.btnCancel.Enabled = state;
+            }
+        }
+
+
         private void btnClear_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            Clear();
+        }
+
+        public void Clear()
+        {
+            this.KeyedInput = string.Empty;
+            this.DisplayMenu();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            this.Stop();
         }
 
+        public void DisplayMenu()
+        {
+            switch (this.State)
+            {
+                case AtmState.EnterAccount:
+                    this.SetScreenText("Please enter your account number: \r\n");
+                    break;
+
+                case AtmState.EnterPin:
+                    this.SetScreenText("Please enter your PIN: \r\n");
+                    break;
+
+                case AtmState.AtmMenu:
+                    this.SetScreenText(string.Format("Welcome, {0}.\r\nPlease select your option and press enter:\r\n1) Deposit Money\r\n2) Withdraw Money\r\n3) Check Balance\r\n4) Return Card\r\n", this.Account));
+                    break;
+
+                case AtmState.Balance:
+                    this.SetScreenText(string.Format("Your balance is £{0}.\r\nPress Enter to continue.\r\n", this.Manager.GetBalance(this.Account)));
+                    break;
+
+                case AtmState.Deposit:
+                    this.SetScreenText(string.Format("Enter the amount to deposit in to your account:\r\n"));
+                    break;
+
+                case AtmState.DepositSuccess:
+                    this.SetScreenText(string.Format("Deposit entered. Your balance is £{0}.\r\nPress Enter to continue.\r\n", this.Manager.GetBalance(this.Account)));
+                    break;
+                    
+            }
+        }
+           
         private void btnZero_Click(object sender, EventArgs e)  { this.AddPin(0); }
         private void btnNine_Click(object sender, EventArgs e)  { this.AddPin(9); }
         private void btnEight_Click(object sender, EventArgs e) { this.AddPin(8); }
@@ -136,7 +318,24 @@ namespace ATM_Simulator
 
         private void AddPin(int number)
         {
+            if (this.State == AtmState.Balance)
+                return;
+
             this.Screen.lblDisplay.Text += number;
+            KeyedInput += number;
         }
+    }
+
+    public enum AtmState
+    {
+        EnterAccount = 0,
+        EnterPin,
+        AtmMenu,
+        Deposit,
+        DepositSuccess,
+        Withdraw, 
+        WithdrawSuccess,
+        WithdrawFail,
+        Balance
     }
 }

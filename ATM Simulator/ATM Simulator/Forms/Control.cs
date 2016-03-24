@@ -23,10 +23,14 @@ namespace ATM_Simulator.Forms
 
         private void btnInstance_Click(object sender, EventArgs e)
         {
-            Simulator s = new Simulator(this.Manager.Master, Guid.NewGuid().ToString());
-            Thread thread = new Thread(new ThreadStart(s.Run));
-            this.Manager.Simulators.Add(s);
-            thread.Start();
+                Simulator s = new Simulator(this.Manager, Guid.NewGuid().ToString());
+                this.Manager.Simulators.Add(s);
+                s.Run();
+
+            //Simulator s = new Simulator(SimulatorManager.Master, Guid.NewGuid().ToString());
+            //Thread thread = new Thread(() => { s.Run(SimulatorManager.Master); });
+            //this.Manager.Simulators.Add(s);
+            //thread.Start();
         }
 
         private void btnNewAccount_Click(object sender, EventArgs e)
