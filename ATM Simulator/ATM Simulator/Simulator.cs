@@ -164,7 +164,7 @@ namespace ATM_Simulator
                             break;
 
                         case "2": // Withdraw
-
+                            this.State = AtmState.Withdraw;
                             break;
 
                         case "3":
@@ -182,6 +182,11 @@ namespace ATM_Simulator
                 case AtmState.Deposit:
                     DepositWorker.RunWorkerAsync();
                     break;
+                    
+                case AtmState.Withdraw:
+                    WithdrawWorker.RunWorkerAsync();
+                    break;
+
 
                 case AtmState.Balance:
                 case AtmState.DepositSuccess:
@@ -200,7 +205,7 @@ namespace ATM_Simulator
 
             decimal amount = 0;
             decimal.TryParse(this.KeyedInput, out amount);
-            System.Threading.Thread.Sleep(new Random().Next(6, 10) * 1000);
+            System.Threading.Thread.Sleep(new Random().Next(10, 20) * 1000);
             this.Manager.Deposit(this.Account, amount);
             this.State = AtmState.DepositSuccess;
             Clear();
@@ -210,7 +215,22 @@ namespace ATM_Simulator
 
         void WithdrawWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            throw new NotImplementedException();
+            this.DisableButtons();
+            decimal amount = 0;
+            decimal.TryParse(this.KeyedInput, out amount);
+            System.Threading.Thread.Sleep(new Random().Next(10, 20) * 1000);
+            if (this.Manager.Withdraw(this.Account, amount))
+            {
+
+                this.State = AtmState.WithdrawSuccess;
+            }
+            else
+            {
+                this.State = AtmState.WithdrawFail;
+            }
+            Clear();
+
+            this.EnableButtons();
         }
 
         private void EnableButtons()
@@ -287,7 +307,18 @@ namespace ATM_Simulator
                 case AtmState.DepositSuccess:
                     this.SetScreenText(string.Format("Deposit entered. Your balance is £{0}.\r\nPress Enter to continue.\r\n", this.Manager.GetBalance(this.Account)));
                     break;
-                    
+
+                case AtmState.Withdraw:
+                    this.SetScreenText(string.Format("Enter the amount to withdraw from your account:\r\n"));
+                    break;
+
+                case AtmState.WithdrawSuccess:
+                    this.SetScreenText(string.Format("Success. Your balance is £{0}.\r\nPress Enter to continue.\r\n", this.Manager.GetBalance(this.Account)));
+                    break;
+
+                case AtmState.WithdrawFail:
+                     this.SetScreenText(string.Format("You do not have sufficient funds in your account.\r\nPress Enter to return.\r\n"));
+                     break; 
             }
         }
            

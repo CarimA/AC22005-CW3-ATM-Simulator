@@ -20,7 +20,7 @@ namespace ATM_Simulator
         public SimulatorManager()
         {
             this.Simulators = new List<Simulator>();
-            this.Accounts = new List<Account>();    
+            this.Accounts = new List<Account>();
 
             // make three sample accounts as required
             Account ac1 = new Account("111111", "1111", 300.00m);
@@ -37,7 +37,7 @@ namespace ATM_Simulator
             this.Control.Show();
 
             this.AccountManagement = new Forms.AccountManagement(this);
-            
+
             Application.Run(this.Control);
         }
 
@@ -62,6 +62,13 @@ namespace ATM_Simulator
         {
             // it's a recurring theme. this would be a rather insecure ATM.
             this.Accounts.Single((x) => x.ID == account).Deposit(amount);
+        }
+        
+
+        public bool Withdraw(string account, decimal amount)
+        {
+            //no idea if this is going to work
+            return this.Accounts.Single((x) => x.ID == account).Withdraw(amount);
         }
     }
 }
