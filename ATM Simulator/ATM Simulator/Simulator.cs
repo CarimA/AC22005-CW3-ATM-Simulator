@@ -23,6 +23,7 @@ namespace ATM_Simulator
         public Forms.PinEntry PinEntry { get; private set; }
 
         public string KeyedInput { get; set; }
+        public bool DecimalAdded { get; set; }
 
         private string Account { get; set; }
         //private int PinAttempts { get; set; }
@@ -60,6 +61,7 @@ namespace ATM_Simulator
             this.PinEntry.btnEight.Click += btnEight_Click;
             this.PinEntry.btnNine.Click += btnNine_Click;
             this.PinEntry.btnZero.Click += btnZero_Click;
+            this.PinEntry.btnDecimal.Click += btnDecimal_Click;
             this.PinEntry.btnCancel.Click += btnCancel_Click;
             this.PinEntry.btnClear.Click += btnClear_Click;
             this.PinEntry.btnEnter.Click += btnEnter_Click;
@@ -332,6 +334,7 @@ namespace ATM_Simulator
         private void btnThree_Click(object sender, EventArgs e) { this.AddPin(3); }
         private void btnTwo_Click(object sender, EventArgs e)   { this.AddPin(2); }
         private void btnOne_Click(object sender, EventArgs e)   { this.AddPin(1); }
+        private void btnDecimal_Click(object sender, EventArgs e) { this.AddDecimal(); }
 
         private void PinEntry_Move(object sender, EventArgs e)
         {
@@ -354,6 +357,19 @@ namespace ATM_Simulator
 
             this.Screen.lblDisplay.Text += number;
             KeyedInput += number;
+        }
+
+        private void AddDecimal()
+        {
+            if (DecimalAdded)
+                return;
+
+            if (!(this.State == AtmState.Deposit || this.State == AtmState.Withdraw))
+                return;
+
+            this.Screen.lblDisplay.Text += ".";
+            KeyedInput += ".";
+            this.DecimalAdded = true;
         }
     }
 

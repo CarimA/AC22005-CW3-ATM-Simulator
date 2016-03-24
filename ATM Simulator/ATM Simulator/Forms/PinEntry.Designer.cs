@@ -39,7 +39,7 @@
             this.btnNine = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.btnZero = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
+            this.btnDecimal = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnEnter = new System.Windows.Forms.Button();
@@ -155,14 +155,15 @@
             this.btnZero.Text = "0";
             this.btnZero.UseVisualStyleBackColor = true;
             // 
-            // button12
+            // btnDecimal
             // 
-            this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button12.Location = new System.Drawing.Point(144, 210);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(60, 60);
-            this.button12.TabIndex = 11;
-            this.button12.UseVisualStyleBackColor = true;
+            this.btnDecimal.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDecimal.Location = new System.Drawing.Point(144, 210);
+            this.btnDecimal.Name = "btnDecimal";
+            this.btnDecimal.Size = new System.Drawing.Size(60, 60);
+            this.btnDecimal.TabIndex = 11;
+            this.btnDecimal.Text = ".";
+            this.btnDecimal.UseVisualStyleBackColor = true;
             // 
             // btnCancel
             // 
@@ -217,7 +218,7 @@
             this.Controls.Add(this.btnEnter);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.button12);
+            this.Controls.Add(this.btnDecimal);
             this.Controls.Add(this.btnZero);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.btnNine);
@@ -250,10 +251,10 @@
         public System.Windows.Forms.Button btnNine;
         private System.Windows.Forms.Button button10;
         public System.Windows.Forms.Button btnZero;
-        private System.Windows.Forms.Button button12;
         public System.Windows.Forms.Button btnCancel;
         public System.Windows.Forms.Button btnClear;
         public System.Windows.Forms.Button btnEnter;
         private System.Windows.Forms.Button button16;
+        public System.Windows.Forms.Button btnDecimal;
     }
 }
