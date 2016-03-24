@@ -39,25 +39,23 @@
             // 
             // AccNoBox
             // 
-            this.AccNoBox.Location = new System.Drawing.Point(150, 84);
+            this.AccNoBox.Location = new System.Drawing.Point(150, 36);
             this.AccNoBox.Name = "AccNoBox";
             this.AccNoBox.Size = new System.Drawing.Size(173, 20);
             this.AccNoBox.TabIndex = 1;
-            this.AccNoBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // PinBox
             // 
-            this.PinBox.Location = new System.Drawing.Point(150, 141);
+            this.PinBox.Location = new System.Drawing.Point(150, 62);
             this.PinBox.Name = "PinBox";
             this.PinBox.Size = new System.Drawing.Size(173, 20);
             this.PinBox.TabIndex = 2;
-            this.PinBox.TextChanged += new System.EventHandler(this.PinBox_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(13, 84);
+            this.label1.Location = new System.Drawing.Point(12, 37);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(110, 16);
             this.label1.TabIndex = 3;
@@ -67,7 +65,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(13, 145);
+            this.label2.Location = new System.Drawing.Point(12, 63);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 16);
             this.label2.TabIndex = 4;
@@ -77,7 +75,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(178, 9);
+            this.label3.Location = new System.Drawing.Point(109, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(115, 24);
             this.label3.TabIndex = 5;
@@ -86,9 +84,9 @@
             // OKBtn
             // 
             this.OKBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OKBtn.Location = new System.Drawing.Point(150, 236);
+            this.OKBtn.Location = new System.Drawing.Point(150, 88);
             this.OKBtn.Name = "OKBtn";
-            this.OKBtn.Size = new System.Drawing.Size(72, 44);
+            this.OKBtn.Size = new System.Drawing.Size(74, 44);
             this.OKBtn.TabIndex = 6;
             this.OKBtn.Text = "OK";
             this.OKBtn.UseVisualStyleBackColor = true;
@@ -97,9 +95,9 @@
             // CancelBtn
             // 
             this.CancelBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CancelBtn.Location = new System.Drawing.Point(251, 236);
+            this.CancelBtn.Location = new System.Drawing.Point(249, 88);
             this.CancelBtn.Name = "CancelBtn";
-            this.CancelBtn.Size = new System.Drawing.Size(72, 44);
+            this.CancelBtn.Size = new System.Drawing.Size(74, 44);
             this.CancelBtn.TabIndex = 7;
             this.CancelBtn.Text = "Cancel";
             this.CancelBtn.UseVisualStyleBackColor = true;
@@ -108,7 +106,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(471, 352);
+            this.ClientSize = new System.Drawing.Size(340, 140);
+            this.ControlBox = false;
             this.Controls.Add(this.CancelBtn);
             this.Controls.Add(this.OKBtn);
             this.Controls.Add(this.label3);
@@ -116,9 +115,9 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.PinBox);
             this.Controls.Add(this.AccNoBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "AccountManagement";
             this.Text = "AccountManagement";
-            this.Load += new System.EventHandler(this.AccountManagement_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
