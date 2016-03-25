@@ -231,7 +231,6 @@ namespace ATM_Simulator
                 this.State = AtmState.WithdrawFail;
             }
             Clear();
-
             this.EnableButtons();
         }
 

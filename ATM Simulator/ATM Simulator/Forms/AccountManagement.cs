@@ -78,10 +78,5 @@ namespace ATM_Simulator.Forms
             this.AccNoBox.Text = string.Empty;
             this.PinBox.Text = string.Empty;
         }
-
-        private void AccNoBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

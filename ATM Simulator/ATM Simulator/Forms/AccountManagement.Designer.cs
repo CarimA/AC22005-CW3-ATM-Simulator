@@ -43,7 +43,6 @@
             this.AccNoBox.Name = "AccNoBox";
             this.AccNoBox.Size = new System.Drawing.Size(173, 20);
             this.AccNoBox.TabIndex = 1;
-            this.AccNoBox.TextChanged += new System.EventHandler(this.AccNoBox_TextChanged);
             // 
             // PinBox
             // 
