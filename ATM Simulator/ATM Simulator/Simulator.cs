@@ -315,7 +315,7 @@ namespace ATM_Simulator
                     break;
 
                 case AtmState.WithdrawSuccess:
-                    this.SetScreenText(string.Format("Success. Your balance is £{0}.\r\nPress Enter to continue.\r\n", this.Manager.GetBalance(this.Account)));
+                    this.SetScreenText(string.Format("Success. Your new balance is £{0}.\r\nPress Enter to continue.\r\n", this.Manager.GetBalance(this.Account)));
                     break;
 
                 case AtmState.WithdrawFail:
